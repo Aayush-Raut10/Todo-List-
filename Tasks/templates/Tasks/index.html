@@ -4,8 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            box-sizing: border-box;
+        }
+        .main-container{
+            width:40%;
+            height: 500px;
+            margin: 50px auto;
+            padding:10px;
+            text-align: center;
+            border:1px solid black;
+            
+           
+        }
+
+        h1{
+
+            text-align: center;
+            margin-bottom: 20px;
+            border:1px solid blue;
+        }
+
+        form{
+            border:1px solid red;
+        }
+        
+       
+
+
+    </style>
 </head>
 <body>
-    <h1>My todo</h1>
+    <div class="main-container">
+        <h1>My Todo List</h1>
+
+        <form action="" method="POST">
+            <input type="text" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
 </body>
 </html>
