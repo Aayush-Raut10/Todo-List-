@@ -1,0 +1,14 @@
+#Python
+__pycache__/
+*pyc
+*.pyc
+*.pyo
+*.pyd
+
+#Virtual environment
+.env
+.venv
+
+#Django
+*.log
+*.sqlite3
