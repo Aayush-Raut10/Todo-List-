@@ -49,14 +49,25 @@
             border:1px solid #ddd;
             margin-bottom: 10px;
             border-radius: 8px;
-            padding:8px;
+            padding:10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             
+        }
+
+        .task-text {
+
+            flex: 1;
+            text-align: left;
+            word-break: break-word;
+            margin-left: 5px;
         }
 
         #add-btn  {
             margin-top: 5px;
             margin-left: 10px;
-            font-size: 20px; /* increase the size as needed */
+            font-size: 20px; 
             border: none;
             border-radius: 50%;
             background-color: white;
@@ -66,15 +77,16 @@
 
                 color: blue;
                 margin-left:50px;
-                text-decoration: none; /* removes underline */
+                text-decoration: none;
         }
 
         
         .delete-icon {
             color: red;
             text-decoration: none;
-            margin-left: 10px;
+            margin:0px 20px;
         }
+
 
     </style>
 </head>
@@ -93,7 +105,7 @@
          {% for task in tasks %}
             <div class="task-container">
         
-              {{ task }}
+            <span class="task-text">{{ task }}</span>
 
                 <!-- Edit task -->
                <a href="{% url 'edit_task' task.id %}" class="edit-icon">

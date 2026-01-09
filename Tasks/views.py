@@ -4,29 +4,35 @@ from Tasks.models import Tasks
 
 # Create your views here.
 def index(request):
+
+    if not request.session.session_key:
+        request.session.create()
     
     if request.method == "POST":
 
-        task = request.POST.get("title")
+        task_title = request.POST.get("title")
 
-        newTask = Tasks(title=task)
-        newTask.save()
+        if task_title:
+
+            newTask = Tasks(title=task_title, session_id=request.session.session_key)
+            newTask.save()
 
         return redirect('index')   
 
     else:
 
-        tasks = Tasks.objects.all()
+        tasks = Tasks.objects.filter(session_id = request.session.session_key)
 
         context = {
             "tasks":tasks,
         }
-    return render(request, "Tasks/index.html", context=context)
+
+        return render(request, "Tasks/index.html", context=context)
 
 def delete_task(request, pk):
 
     try:
-        task = Tasks.objects.get(id=pk)
+        task = Tasks.objects.get(id=pk, session_id = request.session.session_key)
     except Tasks.DoesNotExist:
         pass
     
@@ -38,16 +44,16 @@ def delete_task(request, pk):
 
 def edit_task(request,pk):
 
-    task = Tasks.objects.get(id=pk)
+    task = Tasks.objects.get(id=pk, session_id = request.session.session_key)
 
     if request.method == "POST":
 
         #get new title from form
         new_title = request.POST.get("title")
-
-        task.title = new_title
-
-        task.save()
+        
+        if new_title:
+            task.title = new_title
+            task.save()
 
         return redirect('index')
     
