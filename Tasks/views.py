@@ -33,3 +33,24 @@ def delete_task(request, pk):
     task.delete()
 
     return redirect('index')
+
+
+
+def edit_task(request,pk):
+
+    task = Tasks.objects.get(id=pk)
+
+    if request.method == "POST":
+
+        #get new title from form
+        new_title = request.POST.get("title")
+
+        task.title = new_title
+
+        task.save()
+
+        return redirect('index')
+    
+    else:
+
+        return render(request, "Tasks/edit.html",{'task':task})

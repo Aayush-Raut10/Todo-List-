@@ -62,21 +62,20 @@
             background-color: white;
         }
 
-        .delete-btn {
-        
-            border: none;
-            border-radius: 50%; /* circle */
-            float: right;
-           
-            
-        
+        .edit-icon{
+
+                color: blue;
+                margin-left:50px;
+                text-decoration: none; /* removes underline */
         }
 
-        .delete-btn i {
-            font-size: 16px; /* size of trash icon */
-            color:red;
-            
+        
+        .delete-icon {
+            color: red;
+            text-decoration: none;
+            margin-left: 10px;
         }
+
        
        
 
@@ -99,13 +98,18 @@
             <div class="task-container">
         
               {{ task }}
-               <button class="delete-btn" type="button">
-                <a href="{% url 'delete_task' task.id %}" onclick="return confirm('Are you sure you want to delete this task?');">
+
+                <!-- Edit task -->
+               <a href="{% url 'edit_task' task.id %}" class="edit-icon">
+                     <i class="fa fa-edit"></i>
+                </a>
+
+                <!-- Delete task -->
+                <a href="{% url 'delete_task' task.id %}" onclick="return confirm('Are you sure you want to delete this task?');" class="delete-icon">
                     
                     <i class="fas fa-trash"></i>
                 </a>
-                </button>
-
+        
             </div>
         {% endfor %}
         
