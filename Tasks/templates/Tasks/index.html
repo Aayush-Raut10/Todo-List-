@@ -51,9 +51,11 @@
         <h1>My Todo List</h1>
 
         <form action="" method="POST">
+
             {% csrf_token %}
-            <input type="text" required>
-            <button type="submit">Add</button>
+            <input type="text" name="task" required>
+            <button type="submit" >Add</button>
+            
         </form>
     </div>
 </body>
