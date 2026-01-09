@@ -6,15 +6,13 @@ from Tasks.models import Tasks
 def index(request):
     
     if request.method == "POST":
-        task = request.POST.get("title")
 
-        print(task)
+        task = request.POST.get("title")
 
         newTask = Tasks(title=task)
         newTask.save()
 
-        
-        return redirect('index')   #  IMPORTANT
+        return redirect('index')   
 
     else:
 
@@ -24,3 +22,14 @@ def index(request):
             "tasks":tasks,
         }
     return render(request, "Tasks/index.html", context=context)
+
+def delete_task(request, pk):
+
+    try:
+        task = Tasks.objects.get(id=pk)
+    except Tasks.DoesNotExist:
+        pass
+    
+    task.delete()
+
+    return redirect('index')
